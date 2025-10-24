@@ -1,0 +1,628 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2FE0D7742EAA7294006D937A /* RickMortySwiftApi in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE0D7732EAA7294006D937A /* RickMortySwiftApi */; };
+		2FE0D7762EAA729C006D937A /* RickMortySwiftApi in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE0D7752EAA729C006D937A /* RickMortySwiftApi */; };
+		2FE0D7782EAA72A3006D937A /* RickMortySwiftApi in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE0D7772EAA72A3006D937A /* RickMortySwiftApi */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2FE0D7192EAA6813006D937A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2FE0D7012EAA6808006D937A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2FE0D7082EAA6808006D937A;
+			remoteInfo = WubbaLubbaDubDubTV;
+		};
+		2FE0D7232EAA6813006D937A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2FE0D7012EAA6808006D937A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2FE0D7082EAA6808006D937A;
+			remoteInfo = WubbaLubbaDubDubTV;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2FE0D7092EAA6808006D937A /* WubbaLubbaDubDubTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WubbaLubbaDubDubTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FE0D7182EAA6813006D937A /* WubbaLubbaDubDubTVTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WubbaLubbaDubDubTVTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FE0D7222EAA6813006D937A /* WubbaLubbaDubDubTVUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WubbaLubbaDubDubTVUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		2FE0D70B2EAA6808006D937A /* WubbaLubbaDubDubTV */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = WubbaLubbaDubDubTV;
+			sourceTree = "<group>";
+		};
+		2FE0D71B2EAA6813006D937A /* WubbaLubbaDubDubTVTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = WubbaLubbaDubDubTVTests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2FE0D7062EAA6808006D937A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FE0D7742EAA7294006D937A /* RickMortySwiftApi in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FE0D7152EAA6813006D937A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FE0D7762EAA729C006D937A /* RickMortySwiftApi in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FE0D71F2EAA6813006D937A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FE0D7782EAA72A3006D937A /* RickMortySwiftApi in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2FE0D7002EAA6808006D937A = {
+			isa = PBXGroup;
+			children = (
+				2FE0D70B2EAA6808006D937A /* WubbaLubbaDubDubTV */,
+				2FE0D71B2EAA6813006D937A /* WubbaLubbaDubDubTVTests */,
+				2FE0D7722EAA7294006D937A /* Frameworks */,
+				2FE0D70A2EAA6808006D937A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2FE0D70A2EAA6808006D937A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2FE0D7092EAA6808006D937A /* WubbaLubbaDubDubTV.app */,
+				2FE0D7182EAA6813006D937A /* WubbaLubbaDubDubTVTests.xctest */,
+				2FE0D7222EAA6813006D937A /* WubbaLubbaDubDubTVUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2FE0D7722EAA7294006D937A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2FE0D7082EAA6808006D937A /* WubbaLubbaDubDubTV */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2FE0D72C2EAA6813006D937A /* Build configuration list for PBXNativeTarget "WubbaLubbaDubDubTV" */;
+			buildPhases = (
+				2FE0D7052EAA6808006D937A /* Sources */,
+				2FE0D7062EAA6808006D937A /* Frameworks */,
+				2FE0D7072EAA6808006D937A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				2FE0D70B2EAA6808006D937A /* WubbaLubbaDubDubTV */,
+			);
+			name = WubbaLubbaDubDubTV;
+			packageProductDependencies = (
+				2FE0D7732EAA7294006D937A /* RickMortySwiftApi */,
+			);
+			productName = WubbaLubbaDubDubTV;
+			productReference = 2FE0D7092EAA6808006D937A /* WubbaLubbaDubDubTV.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2FE0D7172EAA6813006D937A /* WubbaLubbaDubDubTVTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2FE0D72F2EAA6813006D937A /* Build configuration list for PBXNativeTarget "WubbaLubbaDubDubTVTests" */;
+			buildPhases = (
+				2FE0D7142EAA6813006D937A /* Sources */,
+				2FE0D7152EAA6813006D937A /* Frameworks */,
+				2FE0D7162EAA6813006D937A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2FE0D71A2EAA6813006D937A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				2FE0D71B2EAA6813006D937A /* WubbaLubbaDubDubTVTests */,
+			);
+			name = WubbaLubbaDubDubTVTests;
+			packageProductDependencies = (
+				2FE0D7752EAA729C006D937A /* RickMortySwiftApi */,
+			);
+			productName = WubbaLubbaDubDubTVTests;
+			productReference = 2FE0D7182EAA6813006D937A /* WubbaLubbaDubDubTVTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2FE0D7212EAA6813006D937A /* WubbaLubbaDubDubTVUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2FE0D7322EAA6813006D937A /* Build configuration list for PBXNativeTarget "WubbaLubbaDubDubTVUITests" */;
+			buildPhases = (
+				2FE0D71E2EAA6813006D937A /* Sources */,
+				2FE0D71F2EAA6813006D937A /* Frameworks */,
+				2FE0D7202EAA6813006D937A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2FE0D7242EAA6813006D937A /* PBXTargetDependency */,
+			);
+			name = WubbaLubbaDubDubTVUITests;
+			packageProductDependencies = (
+				2FE0D7772EAA72A3006D937A /* RickMortySwiftApi */,
+			);
+			productName = WubbaLubbaDubDubTVUITests;
+			productReference = 2FE0D7222EAA6813006D937A /* WubbaLubbaDubDubTVUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2FE0D7012EAA6808006D937A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					2FE0D7082EAA6808006D937A = {
+						CreatedOnToolsVersion = 26.0.1;
+					};
+					2FE0D7172EAA6813006D937A = {
+						CreatedOnToolsVersion = 26.0.1;
+						TestTargetID = 2FE0D7082EAA6808006D937A;
+					};
+					2FE0D7212EAA6813006D937A = {
+						CreatedOnToolsVersion = 26.0.1;
+						TestTargetID = 2FE0D7082EAA6808006D937A;
+					};
+				};
+			};
+			buildConfigurationList = 2FE0D7042EAA6808006D937A /* Build configuration list for PBXProject "WubbaLubbaDubDubTV" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2FE0D7002EAA6808006D937A;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				2FE0D7352EAA6FA7006D937A /* XCRemoteSwiftPackageReference "Rick-and-Morty-Swift-API" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 2FE0D70A2EAA6808006D937A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2FE0D7082EAA6808006D937A /* WubbaLubbaDubDubTV */,
+				2FE0D7172EAA6813006D937A /* WubbaLubbaDubDubTVTests */,
+				2FE0D7212EAA6813006D937A /* WubbaLubbaDubDubTVUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2FE0D7072EAA6808006D937A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FE0D7162EAA6813006D937A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FE0D7202EAA6813006D937A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2FE0D7052EAA6808006D937A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FE0D7142EAA6813006D937A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FE0D71E2EAA6813006D937A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2FE0D71A2EAA6813006D937A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2FE0D7082EAA6808006D937A /* WubbaLubbaDubDubTV */;
+			targetProxy = 2FE0D7192EAA6813006D937A /* PBXContainerItemProxy */;
+		};
+		2FE0D7242EAA6813006D937A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2FE0D7082EAA6808006D937A /* WubbaLubbaDubDubTV */;
+			targetProxy = 2FE0D7232EAA6813006D937A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2FE0D72A2EAA6813006D937A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = AP62F24ZLQ;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = WubbaLubbaDub;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2FE0D72B2EAA6813006D937A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = AP62F24ZLQ;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = WubbaLubbaDub;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2FE0D72D2EAA6813006D937A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AP62F24ZLQ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nl.rh.WubbaLubbaDubDubTV;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2FE0D72E2EAA6813006D937A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AP62F24ZLQ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nl.rh.WubbaLubbaDubDubTV;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2FE0D7302EAA6813006D937A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AP62F24ZLQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nl.rh.WubbaLubbaDubDubTVTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WubbaLubbaDubDubTV.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WubbaLubbaDubDubTV";
+			};
+			name = Debug;
+		};
+		2FE0D7312EAA6813006D937A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AP62F24ZLQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nl.rh.WubbaLubbaDubDubTVTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WubbaLubbaDubDubTV.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WubbaLubbaDubDubTV";
+			};
+			name = Release;
+		};
+		2FE0D7332EAA6813006D937A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AP62F24ZLQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nl.rh.WubbaLubbaDubDubTVUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WubbaLubbaDubDubTV;
+			};
+			name = Debug;
+		};
+		2FE0D7342EAA6813006D937A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AP62F24ZLQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nl.rh.WubbaLubbaDubDubTVUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WubbaLubbaDubDubTV;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2FE0D7042EAA6808006D937A /* Build configuration list for PBXProject "WubbaLubbaDubDubTV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FE0D72A2EAA6813006D937A /* Debug */,
+				2FE0D72B2EAA6813006D937A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2FE0D72C2EAA6813006D937A /* Build configuration list for PBXNativeTarget "WubbaLubbaDubDubTV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FE0D72D2EAA6813006D937A /* Debug */,
+				2FE0D72E2EAA6813006D937A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2FE0D72F2EAA6813006D937A /* Build configuration list for PBXNativeTarget "WubbaLubbaDubDubTVTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FE0D7302EAA6813006D937A /* Debug */,
+				2FE0D7312EAA6813006D937A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2FE0D7322EAA6813006D937A /* Build configuration list for PBXNativeTarget "WubbaLubbaDubDubTVUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FE0D7332EAA6813006D937A /* Debug */,
+				2FE0D7342EAA6813006D937A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2FE0D7352EAA6FA7006D937A /* XCRemoteSwiftPackageReference "Rick-and-Morty-Swift-API" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/benjaminbruch/Rick-and-Morty-Swift-API";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2FE0D7732EAA7294006D937A /* RickMortySwiftApi */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2FE0D7352EAA6FA7006D937A /* XCRemoteSwiftPackageReference "Rick-and-Morty-Swift-API" */;
+			productName = RickMortySwiftApi;
+		};
+		2FE0D7752EAA729C006D937A /* RickMortySwiftApi */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2FE0D7352EAA6FA7006D937A /* XCRemoteSwiftPackageReference "Rick-and-Morty-Swift-API" */;
+			productName = RickMortySwiftApi;
+		};
+		2FE0D7772EAA72A3006D937A /* RickMortySwiftApi */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2FE0D7352EAA6FA7006D937A /* XCRemoteSwiftPackageReference "Rick-and-Morty-Swift-API" */;
+			productName = RickMortySwiftApi;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 2FE0D7012EAA6808006D937A /* Project object */;
+}
