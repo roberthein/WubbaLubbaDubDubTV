@@ -1,4 +1,3 @@
-// WubbaLubbaDubDubTV/Core/Cache/FetchCache.swift
 import Foundation
 
 actor FetchCache<Key: Hashable, Value> {

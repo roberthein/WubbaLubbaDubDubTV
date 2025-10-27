@@ -1,4 +1,3 @@
-// WubbaLubbaDubDubTV/Features/CharacterDetail/CharacterDetailViewModel.swift
 import Foundation
 import Observation
 import SwiftData

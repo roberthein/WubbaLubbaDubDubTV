@@ -1,4 +1,3 @@
-// WubbaLubbaDubDubTV/Features/EpisodesList/EpisodesListViewModel.swift
 import Foundation
 import Observation
 

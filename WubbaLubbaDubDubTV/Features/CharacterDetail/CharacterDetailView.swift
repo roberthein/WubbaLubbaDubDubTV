@@ -1,28 +1,36 @@
-// WubbaLubbaDubDubTV/Features/CharacterDetail/CharacterDetailView.swift
 import SwiftUI
 
 struct CharacterDetailView: View {
     @Environment(\.app) private var app
     let characterID: Int
     @State private var vm: CharacterDetailViewModel?
+    @Namespace private var characterNamespace
 
     var body: some View {
-        Group {
-            if let vm = vm {
-                if let c = vm.character {
-                    characterContent(c)
-                } else if vm.isLoading {
-                    loadingState()
-                } else if let err = vm.error {
-                    errorState(err, vm: vm)
+        ZStack {
+            RMPortalView(speed: 0.5)
+                .ignoresSafeArea()
+
+            VStack {
+                characterTitle()
+
+                if let vm = vm {
+                    if let c = vm.character {
+                        characterContent(c)
+                    } else if vm.isLoading {
+                        loadingState()
+                    } else if let err = vm.error {
+                        errorState(err, vm: vm)
+                    } else {
+                        emptyState()
+                    }
                 } else {
-                    emptyState()
+                    initializingState()
                 }
-            } else {
-                initializingState()
             }
+            .padding([.horizontal, .top], Padding.outer)
         }
-        .navigationTitle("Character #\(characterID)")
+        .navigationBarBackButtonHidden()
         .task {
             if vm == nil {
                 vm = CharacterDetailViewModel(id: characterID, repo: app.charactersRepository)
@@ -34,12 +42,25 @@ struct CharacterDetailView: View {
     @ViewBuilder
     private func characterContent(_ character: CharacterEntity) -> some View {
         ScrollView {
-            VStack(spacing: 16) {
-                characterImage(character)
-                characterInfo(character)
+            VStack(spacing: .zero) {
+                Spacer()
+                VStack(spacing: -Padding.outerDouble) {
+                    characterImage(character)
+                    characterInfo(character)
+                }
+                Spacer()
             }
-            .padding()
+            .frame(maxHeight: .infinity)
         }
+        .scrollClipDisabled()
+    }
+
+    @ViewBuilder
+    private func characterTitle() -> some View {
+        CharacterView(
+            characterID: characterID,
+            namespace: characterNamespace
+        )
     }
 
     @ViewBuilder
@@ -47,44 +68,82 @@ struct CharacterDetailView: View {
         AsyncImage(url: character.imageURL) { phase in
             switch phase {
             case .empty:
-                Rectangle().fill(.secondary.opacity(0.2)).aspectRatio(1, contentMode: .fit).redacted(reason: .placeholder)
+                Rectangle()
+                    .fill(.secondary.opacity(0.2))
+                    .aspectRatio(1, contentMode: .fill)
+                    .redacted(reason: .placeholder)
             case .success(let image):
-                image.resizable().aspectRatio(contentMode: .fit).clipShape(RoundedRectangle(cornerRadius: 12))
+                image.resizable()
+                    .aspectRatio(contentMode: .fill)
             case .failure:
-                Image(systemName: "person.crop.square").resizable().scaledToFit()
+                Image(systemName: "person.crop.square")
+                    .resizable()
+                    .scaledToFit()
             @unknown default:
                 EmptyView()
             }
         }
-        .frame(maxWidth: 300)
+        .mask {
+            Image("blob-1")
+        }
+        .frame(width: 320, height: 335)
     }
 
     @ViewBuilder
     private func characterInfo(_ character: CharacterEntity) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(character.name).font(.title.bold())
-            Text("\(character.species) • \(character.status)").font(.subheadline).foregroundStyle(.secondary)
-            Divider()
-            LabeledContent("Origin", value: character.originName)
-            LabeledContent("Episodes", value: "\(character.episodeCount)")
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
+        Color.rmPinkLight
+            .frame(width: 320, height: 240)
+            .mask {
+                Image("blob-2")
+            }
+            .overlay {
+                VStack(spacing: Padding.inner) {
+                    Text(character.name)
+                        .font(CustomFont.secondaryTitle)
+                        .foregroundStyle(Color.rmBlueDark)
+
+                    Text("\(character.species) • \(character.status)")
+                        .font(CustomFont.secondarySubtitle)
+                        .foregroundStyle(Color.rmBlueDark)
+
+                    Divider()
+
+                    LabeledContent("Origin", value: character.originName)
+                        .font(CustomFont.secondarySubtitle)
+                        .foregroundStyle(Color.rmBlueDark)
+                    LabeledContent("Episodes", value: "\(character.episodeCount)")
+                        .font(CustomFont.secondarySubtitle)
+                        .foregroundStyle(Color.rmBlueDark)
+                }
+                .frame(maxWidth: .infinity, alignment: .center)
+                .padding(.top, Padding.outerDouble)
+                .padding(.horizontal, Padding.outer)
+            }
     }
 
     @ViewBuilder
     private func loadingState() -> some View {
-        VStack(spacing: 12) {
-            ForEach(0..<6, id: \.self) { _ in SkeletonRow() }
-        }
-        .padding()
+        Placeholder.LoadingView()
     }
 
     @ViewBuilder
     private func errorState(_ error: String, vm: CharacterDetailViewModel) -> some View {
         VStack(spacing: 12) {
-            Text("Failed to load").font(.headline)
-            Text(error).font(.footnote).foregroundStyle(.secondary)
-            Button("Retry") { Task { await vm.load() } }
+            Text("Failed to load")
+                .font(CustomFont.secondaryTitle)
+                .foregroundStyle(Color.rmPink)
+
+            Text(error)
+                .font(CustomFont.secondarySubtitle)
+                .foregroundStyle(Color.rmPink)
+
+            Button {
+                Task { await vm.load() }
+            } label: {
+                Text("Retry")
+                    .font(CustomFont.secondaryTitle)
+                    .foregroundStyle(Color.rmPink)
+            }
         }
         .padding()
     }
@@ -92,13 +151,15 @@ struct CharacterDetailView: View {
     @ViewBuilder
     private func emptyState() -> some View {
         Text("No data available")
-            .foregroundStyle(.secondary)
-            .padding()
+            .font(CustomFont.secondaryTitle)
+            .foregroundStyle(Color.rmPink)
     }
 
     @ViewBuilder
     private func initializingState() -> some View {
-        ProgressView("Initializing...")
-            .padding()
+        ProgressView()
+            .progressViewStyle(CircularProgressViewStyle())
+            .tint(Color.rmPinkLight)
+            .scaleEffect(1.5)
     }
 }

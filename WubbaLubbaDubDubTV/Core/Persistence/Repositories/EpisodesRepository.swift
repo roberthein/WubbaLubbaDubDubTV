@@ -1,9 +1,10 @@
-// WubbaLubbaDubDubTV/Core/Persistence/Repositories/EpisodesRepository.swift
 import Foundation
 import SwiftData
 import RickMortySwiftApi
+import Observation
 
 @MainActor
+@Observable
 final class EpisodesRepository {
     private let rmService: RMServicing
     private let context: ModelContext
@@ -32,7 +33,7 @@ final class EpisodesRepository {
         
         let next = currentPage + 1
         
-        try? await Task.sleep(for: .milliseconds(500))
+        try? await Task.sleep(for: .milliseconds(1000))
         
         do {
             let response = try await rmService.pagedEpisodes(page: next)

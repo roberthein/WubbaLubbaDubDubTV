@@ -1,11 +1,6 @@
 import SwiftUI
 import simd
 import CoreGraphics
-#if canImport(UIKit)
-import UIKit
-#elseif canImport(AppKit)
-import AppKit
-#endif
 
 public struct RMPortalView: View {
     public var c0: Color
@@ -17,11 +12,11 @@ public struct RMPortalView: View {
     @State private var startDate = Date()
     
     public init(
-        c0: Color = Color(.sRGB, red: 0.184, green: 0.529, blue: 0.086, opacity: 1),
-        c1: Color = Color(.sRGB, red: 0.557, green: 0.890, blue: 0.161, opacity: 1),
-        c2: Color = Color(.sRGB, red: 0.349, green: 0.835, blue: 0.110, opacity: 1),
+        c0: Color = Color(.sRGB, red: 82/255, green: 189/255, blue: 144/255, opacity: 1),
+        c1: Color = Color(.sRGB, red: 155/255, green: 205/255, blue: 117/255, opacity: 1),
+        c2: Color = Color(.sRGB, red: 200/255, green: 221/255, blue: 116/255, opacity: 1),
         c3: Color = Color(.sRGB, red: 0.921, green: 0.980, blue: 0.847, opacity: 1),
-        speed: Float = 1.0
+        speed: Float = 1
     ) {
         self.c0 = c0
         self.c1 = c1
@@ -31,7 +26,7 @@ public struct RMPortalView: View {
     }
     
     public var body: some View {
-        TimelineView(.periodic(from: startDate, by: 1.0/60.0)) { context in
+        TimelineView(.periodic(from: startDate, by: 1/60)) { context in
             Canvas { ctx, size in
                 let shader = self.makeRMPortalShader(size: size, date: context.date)
                 let rect = CGRect(origin: .zero, size: size)

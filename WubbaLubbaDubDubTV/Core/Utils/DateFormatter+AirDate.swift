@@ -1,4 +1,3 @@
-// WubbaLubbaDubDubTV/Core/Utils/DateFormatter+AirDate.swift
 import Foundation
 
 enum AirDateFormatter {

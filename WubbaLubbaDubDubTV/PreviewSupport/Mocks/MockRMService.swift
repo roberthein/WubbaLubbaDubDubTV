@@ -1,4 +1,3 @@
-// WubbaLubbaDubDubTV/PreviewSupport/Mocks/MockRMService.swift
 import Foundation
 import RickMortySwiftApi
 
@@ -36,21 +35,6 @@ final class MockRMService: RMServicing {
         let chars = try decodeCharacters(ids: Array(start...end))
         let hasNext = end < total
         return (chars, hasNext)
-    }
-    
-    func pagedLocations(page: Int) async throws -> (locations: [RMLocationModel], hasNext: Bool) {
-        let pageSize = 20
-        let total = 126
-        let start = (page - 1) * pageSize + 1
-        guard start <= total else { return ([], false) }
-        let end = min(page * pageSize, total)
-        let locs = try decodeLocations(ids: Array(start...end))
-        let hasNext = end < total
-        return (locs, hasNext)
-    }
-    
-    func location(id: Int) async throws -> RMLocationModel {
-        try decodeLocations(ids: [id]).first!
     }
 
     // MARK: - JSON helpers
@@ -94,23 +78,5 @@ final class MockRMService: RMServicing {
         }.joined(separator: ",")
         let json = "[\(items)]".data(using: .utf8)!
         return try JSONDecoder().decode([RMCharacterModel].self, from: json)
-    }
-    
-    private func decodeLocations(ids: [Int]) throws -> [RMLocationModel] {
-        let items = ids.map { id in
-            """
-            {
-              "id": \(id),
-              "name": "Location \(id)",
-              "type": "Planet",
-              "dimension": "Dimension C-137",
-              "residents": ["https://rickandmortyapi.com/api/character/1","https://rickandmortyapi.com/api/character/2"],
-              "url": "https://rickandmortyapi.com/api/location/\(id)",
-              "created": "2017-11-10T12:42:04.162Z"
-            }
-            """
-        }.joined(separator: ",")
-        let json = "[\(items)]".data(using: .utf8)!
-        return try JSONDecoder().decode([RMLocationModel].self, from: json)
     }
 }

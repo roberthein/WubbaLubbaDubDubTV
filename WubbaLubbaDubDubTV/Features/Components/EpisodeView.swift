@@ -5,32 +5,38 @@ struct EpisodeView: View {
     var namespace: Namespace.ID
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text(episode.name)
-                .font(.title2.bold())
-                .foregroundStyle(.black)
+        ZStack {
+            Image(episode.cellId)
+                .resizable()
+                .scaledToFill()
+                .foregroundStyle(Color.rmYellow)
 
-            HStack(spacing: 16) {
-                Label(episode.code, systemImage: "tv")
-                    .font(.subheadline)
-                    .foregroundStyle(.black)
+            VStack(alignment: .center, spacing: Padding.innerHalf) {
+                Text(episode.name.uppercased())
+                    .font(CustomFont.primaryTitle)
+                    .foregroundStyle(Color.rmBlueDark)
+                    .lineLimit(1)
 
-                if let airDate = episode.airDate {
-                    Label(AirDateFormatter.format(airDate), systemImage: "calendar")
-                        .font(.subheadline)
-                        .foregroundStyle(.black)
+                HStack(spacing: Padding.inner) {
+                    Label(episode.code, systemImage: "tv")
+                        .font(CustomFont.primarySubtitle)
+                        .foregroundStyle(Color.rmBlueDark)
+
+                    if let airDate = episode.airDate {
+                        Label(AirDateFormatter.format(airDate), systemImage: "calendar")
+                            .font(CustomFont.primarySubtitle)
+                            .foregroundStyle(Color.rmBlueDark)
+                    }
+                }
+
+                HStack {
+                    Label("\(episode.characterIDs.count) Characters", systemImage: "person.3.fill")
+                        .font(CustomFont.primarySubtitle)
+                        .foregroundStyle(Color.rmBlueDark)
                 }
             }
-
-            Divider()
-
-            HStack {
-                Label("\(episode.characterIDs.count) Characters", systemImage: "person.3.fill")
-                    .font(.subheadline)
-                    .foregroundStyle(.black)
-            }
+            .padding(.horizontal, Padding.outerDouble)
         }
         .matchedTransitionSource(id: "episode_\(episode.id)", in: namespace)
-        .background(Color.rmYellow)
     }
 }

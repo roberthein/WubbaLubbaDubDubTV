@@ -5,17 +5,20 @@ struct ParallaxView: View {
     let elementCount: Int
     let sizeRange: ClosedRange<CGFloat>
     let spreadFactor: CGFloat
+    let clearCenter: Bool
 
     init(
         contentOffset: CGFloat = .zero,
         elementCount: Int = 32,
         sizeRange: ClosedRange<CGFloat> = 150...300,
-        spreadFactor: CGFloat = 1.0
+        spreadFactor: CGFloat = 1,
+        clearCenter: Bool = false
     ) {
         self.contentOffset = contentOffset
         self.elementCount = elementCount
         self.sizeRange = sizeRange
         self.spreadFactor = spreadFactor
+        self.clearCenter = clearCenter
     }
 
     var body: some View {
@@ -39,8 +42,13 @@ struct ParallaxView: View {
                     )
 
                     let scale = element.size / 250
-                    let x = element.position.x - ((element.size * scale) / 4)
+                    let isLeft = (geometry.size.width / 2) > element.position.x
+                    var x = element.position.x - ((element.size * scale) / 4)
                     let y = wrappedY
+
+                    if clearCenter {
+                        x += isLeft ? -100 : 100
+                    }
 
                     if let image = context.resolveSymbol(id: element.id) {
                         var contextCopy = context
@@ -160,9 +168,9 @@ class ParallaxElements {
                 let cornerRadius = CGFloat.random(in: 5...25)
 
                 let color = Color(
-                    red: Double.random(in: 0.6...1.0),
-                    green: Double.random(in: 0.6...1.0),
-                    blue: Double.random(in: 0.6...1.0)
+                    red: Double.random(in: 0.6...1),
+                    green: Double.random(in: 0.6...1),
+                    blue: Double.random(in: 0.6...1)
                 )
 
                 let symbolName = symbolNames.randomElement() ?? "star.fill"

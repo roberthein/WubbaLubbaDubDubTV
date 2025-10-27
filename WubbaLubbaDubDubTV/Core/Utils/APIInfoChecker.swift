@@ -1,4 +1,3 @@
-// WubbaLubbaDubDubTV/Core/Utils/APIInfoChecker.swift
 import Foundation
 import RickMortySwiftApi
 

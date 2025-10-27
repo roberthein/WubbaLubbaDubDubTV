@@ -1,4 +1,3 @@
-// WubbaLubbaDubDubTV/Core/Utils/IDParsing.swift
 import Foundation
 
 enum IDParsing {

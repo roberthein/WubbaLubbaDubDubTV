@@ -1,4 +1,3 @@
-// WubbaLubbaDubDubTV/Core/Persistence/Models/EpisodeEntity.swift
 import Foundation
 import SwiftData
 
@@ -18,5 +17,13 @@ final class EpisodeEntity {
         self.code = code
         self.characterIDs = characterIDs
         self.updatedAt = updatedAt
+    }
+
+    var cellId: String {
+        "cell-\(mapToOneToFour(id))"
+    }
+
+    func mapToOneToFour(_ value: Int) -> Int {
+        return ((value - 1) % 4 + 4) % 4 + 1
     }
 }

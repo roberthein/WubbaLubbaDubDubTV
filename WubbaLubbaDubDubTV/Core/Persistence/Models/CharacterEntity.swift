@@ -1,4 +1,3 @@
-// WubbaLubbaDubDubTV/Core/Persistence/Models/CharacterEntity.swift
 import Foundation
 import SwiftData
 
@@ -29,5 +28,9 @@ final class CharacterEntity {
         self.imageURL = imageURL
         self.episodeCount = episodeCount
         self.updatedAt = updatedAt
+    }
+
+    static func mapToOneToThree(_ value: Int) -> Int {
+        return ((value - 1) % 3 + 3) % 3 + 1
     }
 }

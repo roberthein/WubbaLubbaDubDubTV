@@ -1,4 +1,3 @@
-// WubbaLubbaDubDubTV/Core/API/RMService.swift
 import Foundation
 import RickMortySwiftApi
 
@@ -8,8 +7,6 @@ public protocol RMServicing: Sendable {
     func pagedCharacters(page: Int) async throws -> (characters: [RMCharacterModel], hasNext: Bool)
     func characters(ids: [Int]) async throws -> [RMCharacterModel]
     func character(id: Int) async throws -> RMCharacterModel
-    func pagedLocations(page: Int) async throws -> (locations: [RMLocationModel], hasNext: Bool)
-    func location(id: Int) async throws -> RMLocationModel
 }
 
 public final class RMService: RMServicing {
@@ -52,15 +49,5 @@ public final class RMService: RMServicing {
         let models: [RMCharacterModel] = try await client.character().getCharactersByPageNumber(pageNumber: page)
         let hasNext = models.count >= pageSize
         return (models, hasNext)
-    }
-    
-    public func pagedLocations(page: Int) async throws -> (locations: [RMLocationModel], hasNext: Bool) {
-        let models: [RMLocationModel] = try await client.location().getLocationsByPageNumber(pageNumber: page)
-        let hasNext = models.count >= pageSize
-        return (models, hasNext)
-    }
-    
-    public func location(id: Int) async throws -> RMLocationModel {
-        try await client.location().getLocationByID(id: id)
     }
 }

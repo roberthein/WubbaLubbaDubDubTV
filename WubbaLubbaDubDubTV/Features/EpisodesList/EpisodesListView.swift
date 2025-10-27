@@ -1,4 +1,3 @@
-// WubbaLubbaDubDubTV/Features/EpisodesList/EpisodesListView.swift
 import SwiftUI
 import SwiftData
 
@@ -7,6 +6,7 @@ struct EpisodesListView: View {
     @Environment(\.modelContext) private var context
     @State private var scrollOffset = CGFloat.zero
     @Namespace private var episodeNamespace
+    @State private var refreshId = UUID()
 
     @Query(sort: [SortDescriptor(\EpisodeEntity.id, order: .forward)])
     private var episodes: [EpisodeEntity]
@@ -15,31 +15,50 @@ struct EpisodesListView: View {
 
     var body: some View {
         ZStack {
+            RepeatingPatternView()
+                .ignoresSafeArea()
+
             backgroundParallax()
-            
-            List {
+
+            listView()
+                .task { await setupViewModel() }
+                .id(refreshId)
+
+            foregroundParallax()
+        }
+    }
+
+    @ViewBuilder
+    private func headerView() -> some View {
+        Image("rm-header")
+            .resizable()
+            .scaledToFit()
+            .padding([.horizontal, .top], Padding.outer)
+            .padding(.bottom, -Padding.outer)
+    }
+
+    @ViewBuilder
+    private func listView() -> some View {
+        ScrollView {
+            headerView()
+
+            LazyVStack(spacing: Padding.innerHalf) {
                 episodeList()
-                
+
                 if (viewModel?.isLoading ?? false) {
-                    SkeletonRow()
+                    Placeholder.LoadingView()
                 } else if (viewModel?.isAtEnd ?? false) {
-                    endReachedMessage()
+                    Placeholder.EndReachedView()
                 }
             }
-            .scrollContentBackground(.hidden)
-            .onScrollGeometryChange(for: CGFloat.self) { proxy in
-                proxy.contentOffset.y + proxy.contentInsets.top
-            } action: { oldValue, newValue in
-                scrollOffset = newValue
-            }
-            .task {
-                await setupViewModel()
-            }
-            .refreshable {
-                await refreshData()
-            }
-            
-            foregroundParallax()
+        }
+        .customRefresh {
+            await refreshData()
+        }
+        .onScrollGeometryChange(for: CGFloat.self) { proxy in
+            proxy.contentOffset.y + proxy.contentInsets.top
+        } action: { oldValue, newValue in
+            scrollOffset = newValue
         }
     }
 
@@ -49,19 +68,19 @@ struct EpisodesListView: View {
             contentOffset: scrollOffset,
             elementCount: 80,
             sizeRange: 150...300,
-            spreadFactor: 2.0
+            spreadFactor: 2
         )
         .ignoresSafeArea()
-        .background(Color(.rmBlueDark))
     }
 
     @ViewBuilder
     private func foregroundParallax() -> some View {
         ParallaxView(
             contentOffset: scrollOffset,
-            elementCount: 30,
-            sizeRange: 50...150,
-            spreadFactor: 2
+            elementCount: 50,
+            sizeRange: 50...120,
+            spreadFactor: 2,
+            clearCenter: true
         )
         .ignoresSafeArea()
         .allowsHitTesting(false)
@@ -80,28 +99,10 @@ struct EpisodesListView: View {
                             Task { await viewModel?.loadNextPageIfNeeded() }
                         }
                     }
-                    .padding(5)
-                    .padding(5)
+                    .padding(.horizontal, Padding.outer)
             }
         }
         .listRowBackground(Color.clear)
-    }
-
-    @ViewBuilder
-    private func endReachedMessage() -> some View {
-        HStack {
-            Spacer()
-            VStack(spacing: 4) {
-                Text("You've reached the end.")
-                    .font(.footnote).foregroundStyle(.secondary)
-                Text("\(episodes.count) episodes loaded")
-                    .font(.caption2).foregroundStyle(.tertiary)
-                Text("⚠️ API only has seasons 1-5")
-                    .font(.caption2).foregroundStyle(.orange)
-            }
-            Spacer()
-        }
-        .padding(.vertical, 8)
     }
 
     private func setupViewModel() async {
@@ -131,5 +132,9 @@ struct EpisodesListView: View {
         }
         app.episodesRepository.reset()
         await viewModel?.loadNextPageIfNeeded()
+        
+        await MainActor.run {
+            refreshId = UUID()
+        }
     }
 }

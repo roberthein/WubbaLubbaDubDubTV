@@ -1,4 +1,3 @@
-// WubbaLubbaDubDubTV/Core/Persistence/Repositories/CharactersRepository.swift
 import Foundation
 import SwiftData
 import RickMortySwiftApi
