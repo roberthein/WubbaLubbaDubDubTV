@@ -10,10 +10,7 @@ struct Placeholder {
                     .foregroundStyle(Color.rmYellow)
                     .padding(.horizontal, Padding.outer)
 
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle())
-                    .tint(Color.rmBlueDark)
-                    .scaleEffect(1.5)
+                LoadingIndicator()
             }
         }
     }
@@ -33,6 +30,15 @@ struct Placeholder {
                     .lineLimit(1)
             }
             .padding(.top, Padding.outer)
+        }
+    }
+
+    struct LoadingIndicator: View {
+        var body: some View {
+            ProgressView()
+                .progressViewStyle(CircularProgressViewStyle())
+                .tint(Color.rmPinkLight)
+                .scaleEffect(1.5)
         }
     }
 }

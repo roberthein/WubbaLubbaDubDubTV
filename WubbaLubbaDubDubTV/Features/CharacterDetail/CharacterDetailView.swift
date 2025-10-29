@@ -25,7 +25,7 @@ struct CharacterDetailView: View {
                         emptyState()
                     }
                 } else {
-                    initializingState()
+                    Placeholder.LoadingIndicator()
                 }
             }
             .padding([.horizontal, .top], Padding.outer)
@@ -68,20 +68,24 @@ struct CharacterDetailView: View {
         AsyncImage(url: character.imageURL) { phase in
             switch phase {
             case .empty:
-                Rectangle()
-                    .fill(.secondary.opacity(0.2))
-                    .aspectRatio(1, contentMode: .fill)
-                    .redacted(reason: .placeholder)
+                EmptyView()
+                    .overlay {
+                        Placeholder.LoadingIndicator()
+                    }
             case .success(let image):
                 image.resizable()
                     .aspectRatio(contentMode: .fill)
             case .failure:
-                Image(systemName: "person.crop.square")
+                Image(systemName: "person")
                     .resizable()
                     .scaledToFit()
+                    .padding(Padding.outerDouble * 2)
             @unknown default:
                 EmptyView()
             }
+        }
+        .background {
+            Color.rmPinkLight
         }
         .mask {
             Image("blob-1")
@@ -153,13 +157,5 @@ struct CharacterDetailView: View {
         Text("No data available")
             .font(CustomFont.secondaryTitle)
             .foregroundStyle(Color.rmPink)
-    }
-
-    @ViewBuilder
-    private func initializingState() -> some View {
-        ProgressView()
-            .progressViewStyle(CircularProgressViewStyle())
-            .tint(Color.rmPinkLight)
-            .scaleEffect(1.5)
     }
 }
