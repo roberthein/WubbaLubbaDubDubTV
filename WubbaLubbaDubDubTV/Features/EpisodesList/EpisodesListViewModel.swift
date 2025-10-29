@@ -2,6 +2,16 @@ import Foundation
 import Observation
 import SwiftData
 
+/// A view model that manages the episodes list state and data operations.
+///
+/// This view model handles:
+/// - Paginated episode loading with infinite scroll support
+/// - Local data persistence using SwiftData
+/// - Loading states and error handling
+/// - Data refresh operations that clear and reload all episodes
+///
+/// The view model follows the MVVM pattern and uses `@Observable` for
+/// reactive UI updates when the underlying data changes.
 @MainActor
 @Observable
 final class EpisodesListViewModel {
@@ -40,6 +50,14 @@ final class EpisodesListViewModel {
         isAtEnd = !repo.hasNextPage && repo.currentPage > 0
     }
     
+    /// Refreshes all episode data by clearing the local cache and reloading from the API.
+    ///
+    /// This method performs a complete data refresh by:
+    /// 1. Clearing all existing episodes and characters from SwiftData
+    /// 2. Resetting the repository's pagination state
+    /// 3. Loading the first page of episodes from the API
+    ///
+    /// This is typically called when the user performs a pull-to-refresh gesture.
     func refreshData() async {
         guard !isLoading else { return }
         isLoading = true

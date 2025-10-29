@@ -2,6 +2,16 @@ import Foundation
 import SwiftData
 import RickMortySwiftApi
 
+/// A repository that manages episode data persistence and API synchronization.
+///
+/// This repository handles:
+/// - Paginated episode loading from the Rick and Morty API
+/// - Local data persistence using SwiftData
+/// - Upsert operations to prevent duplicate data
+/// - Character ID extraction and parsing from episode URLs
+///
+/// The repository acts as a bridge between the API service and the local database,
+/// ensuring data consistency and providing efficient caching mechanisms.
 @MainActor
 final class EpisodesRepository {
     private let rmService: RMServicing
@@ -42,6 +52,16 @@ final class EpisodesRepository {
         }
     }
     
+    /// Performs upsert operations on episode data to prevent duplicates.
+    ///
+    /// This method handles the complex logic of:
+    /// - Checking for existing episodes by ID
+    /// - Extracting character IDs from episode character URLs
+    /// - Parsing air dates using the custom `AirDateFormatter`
+    /// - Updating existing episodes or creating new ones as needed
+    ///
+    /// - Parameter episodes: An array of episode models from the API to upsert
+    /// - Throws: Any error that occurs during the database operations
     private func upsert(episodes: [RMEpisodeModel]) throws {
         for ep in episodes {
             let id = ep.id

@@ -2,6 +2,16 @@ import SwiftUI
 import simd
 import CoreGraphics
 
+/// A custom view that renders animated portal effects using Metal shaders.
+///
+/// This view creates dynamic, time-based portal animations by:
+/// - Using Metal shaders for high-performance GPU rendering
+/// - Animating color gradients and patterns at 60fps
+/// - Supporting customizable color schemes and animation speeds
+/// - Leveraging `TimelineView` for smooth time-based updates
+///
+/// The portal effect is achieved through a custom Metal shader that creates
+/// swirling, pulsing patterns reminiscent of Rick and Morty's portal technology.
 public struct RMPortalView: View {
     public var c0: Color
     public var c1: Color
@@ -35,6 +45,17 @@ public struct RMPortalView: View {
         }
     }
     
+    /// Creates a Metal shader with the current time and color parameters.
+    ///
+    /// This method configures the Metal shader by:
+    /// - Converting SwiftUI colors to sRGB float3 values for the shader
+    /// - Passing time-based animation parameters
+    /// - Setting up the shader function from the app bundle
+    ///
+    /// - Parameters:
+    ///   - size: The current size of the view for proper shader scaling
+    ///   - date: The current date for time-based animation calculations
+    /// - Returns: A configured Metal shader ready for rendering
     private func makeRMPortalShader(size: CGSize, date: Date) -> Shader {
         let t = Float(date.timeIntervalSince(startDate))
         let res = CGPoint(x: size.width, y: size.height)

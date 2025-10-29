@@ -1,6 +1,11 @@
 import Foundation
 import RickMortySwiftApi
 
+/// A protocol defining the interface for Rick and Morty API operations.
+///
+/// This protocol abstracts the API service layer, enabling easy testing and mocking.
+/// All methods are designed to work with async/await and are marked as `Sendable`
+/// for safe concurrent usage.
 public protocol RMServicing: Sendable {
     func pagedEpisodes(page: Int) async throws -> (episodes: [RMEpisodeModel], hasNext: Bool)
     func episode(id: Int) async throws -> RMEpisodeModel
@@ -25,6 +30,16 @@ public final class RMService: RMServicing {
         try await client.episode().getEpisodeByID(id: id)
     }
 
+    /// Fetches multiple characters concurrently using TaskGroup for optimal performance.
+    ///
+    /// This method demonstrates advanced Swift concurrency patterns by:
+    /// - Using `withThrowingTaskGroup` to fetch characters in parallel
+    /// - Preserving the original order of character IDs in the result
+    /// - Handling potential failures gracefully with proper error propagation
+    ///
+    /// - Parameter ids: An array of character IDs to fetch.
+    /// - Returns: An array of character models in the same order as the input IDs.
+    /// - Throws: Any error that occurs during the API calls.
     public func characters(ids: [Int]) async throws -> [RMCharacterModel] {
         guard !ids.isEmpty else { return [] }
         return try await withThrowingTaskGroup(of: (Int, RMCharacterModel).self) { group in

@@ -18,6 +18,16 @@ struct WubbaLubbaDubDubTVApp: App {
     }
 }
 
+/// A dependency injection container that manages the app's core services and view models.
+///
+/// The `AppContainer` follows the singleton pattern and provides centralized access to:
+/// - API services for Rick and Morty data
+/// - Repository layers for data persistence
+/// - View model instances with lazy initialization
+/// - SwiftData model container for local storage
+///
+/// This container ensures proper dependency management and enables easy testing by allowing
+/// mock services to be injected during initialization.
 @Observable
 final class AppContainer {
     let rmService: RMServicing
@@ -41,6 +51,12 @@ final class AppContainer {
         self.modelContainer = modelContainer
     }
     
+    /// Returns the episodes list view model, creating it lazily if needed.
+    ///
+    /// This method implements lazy initialization to ensure the view model is only created
+    /// when actually needed, improving app startup performance.
+    ///
+    /// - Returns: The shared `EpisodesListViewModel` instance.
     func getEpisodesListViewModel() -> EpisodesListViewModel {
         if episodesListViewModel == nil {
             episodesListViewModel = EpisodesListViewModel(repo: episodesRepository, context: modelContainer.mainContext)
@@ -66,6 +82,15 @@ final class AppContainer {
         return episodeDetailViewModels[id]!
     }
 
+    /// Creates and configures a new `AppContainer` with all required dependencies.
+    ///
+    /// This factory method sets up the complete dependency graph:
+    /// 1. Creates SwiftData model container with episode and character schemas
+    /// 2. Initializes the Rick and Morty API service
+    /// 3. Creates repository instances with proper dependencies
+    /// 4. Returns a fully configured container ready for use
+    ///
+    /// - Returns: A fully configured `AppContainer` instance.
     static func bootstrap() -> AppContainer {
         let schema = Schema([EpisodeEntity.self, CharacterEntity.self])
         let mc = try! ModelContainer(for: schema)

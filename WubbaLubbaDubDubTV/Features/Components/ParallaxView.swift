@@ -1,5 +1,16 @@
 import SwiftUI
 
+/// A custom parallax scrolling effect that creates depth and visual interest.
+///
+/// This view implements a sophisticated parallax system that:
+/// - Renders multiple layers of elements at different scroll speeds
+/// - Uses Canvas for high-performance drawing
+/// - Implements infinite scrolling with position wrapping
+/// - Caches generated elements for optimal performance
+/// - Supports customizable element counts, sizes, and spread patterns
+///
+/// The parallax effect is achieved by moving elements at different speeds relative
+/// to the scroll offset, creating the illusion of depth and movement.
 struct ParallaxView: View {
     var contentOffset: CGFloat
     let elementCount: Int
@@ -80,6 +91,17 @@ struct ParallaxView: View {
         }
     }
 
+    /// Implements infinite scrolling by wrapping element positions around the screen bounds.
+    ///
+    /// This method ensures that parallax elements seamlessly wrap from bottom to top
+    /// and vice versa, creating the illusion of infinite content scrolling.
+    ///
+    /// - Parameters:
+    ///   - originalY: The original Y position of the element
+    ///   - offset: The current scroll offset
+    ///   - screenHeight: The height of the visible screen
+    ///   - squareSize: The size of the element for proper wrapping calculations
+    /// - Returns: The wrapped Y position that creates seamless infinite scrolling
     private func wrapPosition(originalY: CGFloat, offset: CGFloat, screenHeight: CGFloat, squareSize: CGFloat) -> CGFloat {
         let totalHeight = screenHeight + squareSize * 2
         var y = originalY + offset
@@ -93,6 +115,13 @@ struct ParallaxView: View {
     }
 }
 
+/// A singleton class that manages parallax element generation and caching.
+///
+/// This class optimizes performance by:
+/// - Caching generated elements based on screen size and parameters
+/// - Generating elements with randomized properties for visual variety
+/// - Using a grid-based layout system for consistent distribution
+/// - Providing a shared instance to avoid duplicate element generation
 class ParallaxElements {
     static let shared = ParallaxElements()
 
