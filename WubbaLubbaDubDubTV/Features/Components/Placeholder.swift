@@ -10,7 +10,7 @@ struct Placeholder {
                     .foregroundStyle(Color.rmYellow)
                     .padding(.horizontal, Padding.outer)
 
-                LoadingIndicator()
+                LoadingIndicator(color: Color.rmBlueDark)
             }
         }
     }
@@ -34,10 +34,11 @@ struct Placeholder {
     }
 
     struct LoadingIndicator: View {
+        let color: Color
         var body: some View {
             ProgressView()
                 .progressViewStyle(CircularProgressViewStyle())
-                .tint(Color.rmPinkLight)
+                .tint(color)
                 .scaleEffect(1.5)
         }
     }

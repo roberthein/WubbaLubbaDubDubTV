@@ -42,48 +42,6 @@ final class EpisodesRepository {
         }
     }
     
-    func loadAllPages() async {
-        while hasNextPage {
-            await loadNextPageIfNeeded()
-        }
-    }
-    
-    func loadPages(_ pageNumbers: [Int]) async {
-        guard !isLoading else { return }
-        isLoading = true
-        defer { isLoading = false }
-        
-        await withTaskGroup(of: (Int, [RMEpisodeModel]?).self) { group in
-            for pageNum in pageNumbers {
-                group.addTask { [rmService] in
-                    do {
-                        let response = try await rmService.pagedEpisodes(page: pageNum)
-                        return (pageNum, response.episodes)
-                    } catch {
-                        return (pageNum, nil)
-                    }
-                }
-            }
-            
-            var loadedPages: [(Int, [RMEpisodeModel])] = []
-            for await (pageNum, episodes) in group {
-                if let episodes = episodes {
-                    loadedPages.append((pageNum, episodes))
-                }
-            }
-            
-            loadedPages.sort { $0.0 < $1.0 }
-            for (pageNum, episodes) in loadedPages {
-                do {
-                    try upsert(episodes: episodes)
-                    currentPage = max(currentPage, pageNum)
-                    hasNextPage = episodes.count >= 20
-                } catch {
-                }
-            }
-        }
-    }
-    
     private func upsert(episodes: [RMEpisodeModel]) throws {
         for ep in episodes {
             let id = ep.id

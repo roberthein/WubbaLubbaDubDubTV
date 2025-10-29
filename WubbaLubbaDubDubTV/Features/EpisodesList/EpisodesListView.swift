@@ -6,6 +6,9 @@ struct EpisodesListView: View {
     @State private var scrollOffset = CGFloat.zero
     @Namespace private var episodeNamespace
     @State private var refreshId = UUID()
+    @State private var hasTriggeredInitialLoad = false
+    @State private var lastLoadedPage = 0
+    @State private var showLoadMoreTrigger = false
 
     private var viewModel: EpisodesListViewModel {
         app.getEpisodesListViewModel()
@@ -42,6 +45,8 @@ struct EpisodesListView: View {
 
             LazyVStack(spacing: Padding.innerHalf) {
                 episodeList()
+                
+                loadMoreTrigger()
 
                 if viewModel.isLoading {
                     Placeholder.LoadingView()
@@ -57,6 +62,7 @@ struct EpisodesListView: View {
             proxy.contentOffset.y + proxy.contentInsets.top
         } action: { oldValue, newValue in
             scrollOffset = newValue
+            checkScrollPosition()
         }
     }
 
@@ -92,22 +98,47 @@ struct EpisodesListView: View {
                     .navigationTransition(.zoom(sourceID: "episode_\(episode.id)", in: episodeNamespace))
             } label: {
                 EpisodeView(episode: episode, namespace: episodeNamespace)
-                    .onAppear {
-                        if index >= viewModel.episodes.count - 1 {
-                            Task { await viewModel.loadNextPageIfNeeded() }
-                        }
-                    }
                     .padding(.horizontal, Padding.outer)
             }
         }
         .listRowBackground(Color.clear)
     }
 
+    @ViewBuilder
+    private func loadMoreTrigger() -> some View {
+        if !viewModel.episodes.isEmpty && !viewModel.isAtEnd && !viewModel.isLoading && showLoadMoreTrigger {
+            Color.clear
+                .frame(height: 1)
+                .onAppear {
+                    Task { await loadNextPageIfNeeded() }
+                }
+        }
+    }
+    
+    private func checkScrollPosition() {
+        guard hasTriggeredInitialLoad else { return }
+        
+        let threshold: CGFloat = 1000
+        showLoadMoreTrigger = scrollOffset > threshold
+    }
+    
+    private func loadNextPageIfNeeded() async {
+        guard !viewModel.isLoading && !viewModel.isAtEnd else { return }
+        
+        let currentPage = viewModel.episodes.count / 20 + 1
+        guard currentPage > lastLoadedPage else { return }
+        
+        showLoadMoreTrigger = false
+        lastLoadedPage = currentPage
+        
+        await viewModel.loadNextPageIfNeeded()
+    }
+    
     private func setupViewModel() async {
         if viewModel.episodes.isEmpty {
-            let checker = APIInfoChecker()
-            _ = try? await checker.checkTotalEpisodes()
             await viewModel.loadNextPageIfNeeded()
+            hasTriggeredInitialLoad = true
+            lastLoadedPage = 1
         }
     }
 
@@ -116,6 +147,9 @@ struct EpisodesListView: View {
         
         await MainActor.run {
             refreshId = UUID()
+            hasTriggeredInitialLoad = true
+            lastLoadedPage = 1
+            showLoadMoreTrigger = false
         }
     }
 }

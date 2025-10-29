@@ -25,7 +25,6 @@ final class AppContainer {
     let charactersRepository: CharactersRepository
     let modelContainer: ModelContainer
     
-    // ViewModels
     private(set) var episodesListViewModel: EpisodesListViewModel?
     private(set) var characterDetailViewModels: [Int: CharacterDetailViewModel] = [:]
     private(set) var episodeDetailViewModels: [Int: EpisodeDetailViewModel] = [:]

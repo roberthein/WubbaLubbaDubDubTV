@@ -1,7 +1,6 @@
 import Foundation
 import RickMortySwiftApi
 
-/// Simple mock that synthesizes data by decoding tiny JSON fragments into the package's models.
 final class MockRMService: RMServicing {
     func pagedEpisodes(page: Int) async throws -> (episodes: [RMEpisodeModel], hasNext: Bool) {
         let pageSize = 20
@@ -37,7 +36,6 @@ final class MockRMService: RMServicing {
         return (chars, hasNext)
     }
 
-    // MARK: - JSON helpers
 
     private func decodeEpisodes(ids: [Int]) throws -> [RMEpisodeModel] {
         let items = ids.map { id in

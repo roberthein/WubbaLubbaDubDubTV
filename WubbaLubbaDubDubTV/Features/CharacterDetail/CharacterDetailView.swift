@@ -66,7 +66,7 @@ struct CharacterDetailView: View {
             case .empty:
                 EmptyView()
                     .overlay {
-                        Placeholder.LoadingIndicator()
+                        Placeholder.LoadingIndicator(color: Color.rmPinkLight)
                     }
             case .success(let image):
                 image.resizable()
@@ -78,6 +78,9 @@ struct CharacterDetailView: View {
                     .padding(Padding.outerDouble * 2)
             @unknown default:
                 EmptyView()
+                    .overlay {
+                        Placeholder.LoadingIndicator(color: Color.rmPinkLight)
+                    }
             }
         }
         .background {

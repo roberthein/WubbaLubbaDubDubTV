@@ -40,16 +40,6 @@ final class EpisodesListViewModel {
         isAtEnd = !repo.hasNextPage && repo.currentPage > 0
     }
     
-    func loadAllEpisodes() async {
-        guard !isLoading else { return }
-        isLoading = true
-        defer { isLoading = false }
-        
-        await repo.loadPages([1, 2, 3])
-        loadEpisodesFromContext()
-        isAtEnd = !repo.hasNextPage && repo.currentPage > 0
-    }
-    
     func refreshData() async {
         guard !isLoading else { return }
         isLoading = true
