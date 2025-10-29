@@ -3,15 +3,13 @@ import SwiftData
 
 struct EpisodesListView: View {
     @Environment(\.app) private var app
-    @Environment(\.modelContext) private var context
     @State private var scrollOffset = CGFloat.zero
     @Namespace private var episodeNamespace
     @State private var refreshId = UUID()
 
-    @Query(sort: [SortDescriptor(\EpisodeEntity.id, order: .forward)])
-    private var episodes: [EpisodeEntity]
-    
-    @State private var viewModel: EpisodesListViewModel?
+    private var viewModel: EpisodesListViewModel {
+        app.getEpisodesListViewModel()
+    }
 
     var body: some View {
         ZStack {
@@ -45,9 +43,9 @@ struct EpisodesListView: View {
             LazyVStack(spacing: Padding.innerHalf) {
                 episodeList()
 
-                if (viewModel?.isLoading ?? false) {
+                if viewModel.isLoading {
                     Placeholder.LoadingView()
-                } else if (viewModel?.isAtEnd ?? false) {
+                } else if viewModel.isAtEnd {
                     Placeholder.EndReachedView()
                 }
             }
@@ -88,15 +86,15 @@ struct EpisodesListView: View {
 
     @ViewBuilder
     private func episodeList() -> some View {
-        ForEach(Array(episodes.enumerated()), id: \.element.id) { index, episode in
+        ForEach(Array(viewModel.episodes.enumerated()), id: \.element.id) { index, episode in
             NavigationLink {
                 EpisodeDetailView(episodeID: episode.id)
                     .navigationTransition(.zoom(sourceID: "episode_\(episode.id)", in: episodeNamespace))
             } label: {
                 EpisodeView(episode: episode, namespace: episodeNamespace)
                     .onAppear {
-                        if index >= episodes.count - 1 {
-                            Task { await viewModel?.loadNextPageIfNeeded() }
+                        if index >= viewModel.episodes.count - 1 {
+                            Task { await viewModel.loadNextPageIfNeeded() }
                         }
                     }
                     .padding(.horizontal, Padding.outer)
@@ -106,32 +104,15 @@ struct EpisodesListView: View {
     }
 
     private func setupViewModel() async {
-        if viewModel == nil {
-            viewModel = EpisodesListViewModel(repo: app.episodesRepository)
-        }
-        if episodes.isEmpty {
+        if viewModel.episodes.isEmpty {
             let checker = APIInfoChecker()
             _ = try? await checker.checkTotalEpisodes()
-            await viewModel?.loadNextPageIfNeeded()
+            await viewModel.loadNextPageIfNeeded()
         }
     }
 
     private func refreshData() async {
-        await MainActor.run {
-            do {
-                let eps = try context.fetch(FetchDescriptor<EpisodeEntity>())
-                for e in eps { context.delete(e) }
-                let chars = try context.fetch(FetchDescriptor<CharacterEntity>())
-                for c in chars { context.delete(c) }
-                try context.save()
-            } catch {
-#if DEBUG
-                print("Refresh reset failed:", error)
-#endif
-            }
-        }
-        app.episodesRepository.reset()
-        await viewModel?.loadNextPageIfNeeded()
+        await viewModel.refreshData()
         
         await MainActor.run {
             refreshId = UUID()

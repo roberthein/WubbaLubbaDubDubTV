@@ -24,6 +24,11 @@ final class AppContainer {
     let episodesRepository: EpisodesRepository
     let charactersRepository: CharactersRepository
     let modelContainer: ModelContainer
+    
+    // ViewModels
+    private(set) var episodesListViewModel: EpisodesListViewModel?
+    private(set) var characterDetailViewModels: [Int: CharacterDetailViewModel] = [:]
+    private(set) var episodeDetailViewModels: [Int: EpisodeDetailViewModel] = [:]
 
     init(
         rmService: RMServicing,
@@ -35,6 +40,31 @@ final class AppContainer {
         self.episodesRepository = episodesRepository
         self.charactersRepository = charactersRepository
         self.modelContainer = modelContainer
+    }
+    
+    func getEpisodesListViewModel() -> EpisodesListViewModel {
+        if episodesListViewModel == nil {
+            episodesListViewModel = EpisodesListViewModel(repo: episodesRepository, context: modelContainer.mainContext)
+        }
+        return episodesListViewModel!
+    }
+    
+    func getCharacterDetailViewModel(id: Int) -> CharacterDetailViewModel {
+        if characterDetailViewModels[id] == nil {
+            characterDetailViewModels[id] = CharacterDetailViewModel(id: id, repo: charactersRepository)
+        }
+        return characterDetailViewModels[id]!
+    }
+    
+    func getEpisodeDetailViewModel(id: Int, context: ModelContext) -> EpisodeDetailViewModel {
+        if episodeDetailViewModels[id] == nil {
+            episodeDetailViewModels[id] = EpisodeDetailViewModel(
+                episodeID: id,
+                charactersRepo: charactersRepository,
+                context: context
+            )
+        }
+        return episodeDetailViewModels[id]!
     }
 
     static func bootstrap() -> AppContainer {

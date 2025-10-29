@@ -9,7 +9,10 @@ struct EpisodeDetailView: View {
     @State private var scrollOffset = CGFloat.zero
 
     let episodeID: Int
-    @State private var viewModel: EpisodeDetailViewModel?
+    
+    private var viewModel: EpisodeDetailViewModel {
+        app.getEpisodeDetailViewModel(id: episodeID, context: context)
+    }
 
     var body: some View {
         ZStack {
@@ -20,7 +23,7 @@ struct EpisodeDetailView: View {
 
             ScrollView {
                 LazyVStack(spacing: Padding.innerHalf) {
-                    if let episode = viewModel?.episode {
+                    if let episode = viewModel.episode {
                         episodeSection(episode)
                         charactersSection(episode)
                     } else {
@@ -37,14 +40,7 @@ struct EpisodeDetailView: View {
         }
         .navigationBarBackButtonHidden()
         .task {
-            if viewModel == nil {
-                viewModel = EpisodeDetailViewModel(
-                    episodeID: episodeID,
-                    charactersRepo: app.charactersRepository,
-                    context: context
-                )
-                await viewModel?.prefetch()
-            }
+            await viewModel.prefetch()
         }
     }
 

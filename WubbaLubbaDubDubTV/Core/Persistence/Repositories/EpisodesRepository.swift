@@ -1,10 +1,8 @@
 import Foundation
 import SwiftData
 import RickMortySwiftApi
-import Observation
 
 @MainActor
-@Observable
 final class EpisodesRepository {
     private let rmService: RMServicing
     private let context: ModelContext

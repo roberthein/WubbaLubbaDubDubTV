@@ -3,8 +3,11 @@ import SwiftUI
 struct CharacterDetailView: View {
     @Environment(\.app) private var app
     let characterID: Int
-    @State private var vm: CharacterDetailViewModel?
     @Namespace private var characterNamespace
+    
+    private var viewModel: CharacterDetailViewModel {
+        app.getCharacterDetailViewModel(id: characterID)
+    }
 
     var body: some View {
         ZStack {
@@ -14,28 +17,21 @@ struct CharacterDetailView: View {
             VStack {
                 characterTitle()
 
-                if let vm = vm {
-                    if let c = vm.character {
-                        characterContent(c)
-                    } else if vm.isLoading {
-                        loadingState()
-                    } else if let err = vm.error {
-                        errorState(err, vm: vm)
-                    } else {
-                        emptyState()
-                    }
+                if let c = viewModel.character {
+                    characterContent(c)
+                } else if viewModel.isLoading {
+                    loadingState()
+                } else if let err = viewModel.error {
+                    errorState(err)
                 } else {
-                    Placeholder.LoadingIndicator()
+                    emptyState()
                 }
             }
             .padding([.horizontal, .top], Padding.outer)
         }
         .navigationBarBackButtonHidden()
         .task {
-            if vm == nil {
-                vm = CharacterDetailViewModel(id: characterID, repo: app.charactersRepository)
-                await vm?.load()
-            }
+            await viewModel.load()
         }
     }
 
@@ -131,7 +127,7 @@ struct CharacterDetailView: View {
     }
 
     @ViewBuilder
-    private func errorState(_ error: String, vm: CharacterDetailViewModel) -> some View {
+    private func errorState(_ error: String) -> some View {
         VStack(spacing: 12) {
             Text("Failed to load")
                 .font(CustomFont.secondaryTitle)
@@ -142,7 +138,7 @@ struct CharacterDetailView: View {
                 .foregroundStyle(Color.rmPink)
 
             Button {
-                Task { await vm.load() }
+                Task { await viewModel.load() }
             } label: {
                 Text("Retry")
                     .font(CustomFont.secondaryTitle)
